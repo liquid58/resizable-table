@@ -1,6 +1,18 @@
+.resizable-table{
+    table-layout:fixed;
+}
+
 .resizable-table th{
     position:relative !important;
     overflow:hidden;
+    white-space:nowrap;
+    padding-right:40px !important;
+}
+
+.rtc-text{
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
     white-space:nowrap;
 }
 
@@ -13,15 +25,6 @@
     cursor:col-resize;
     user-select:none;
     z-index:9999;
-    background:rgba(0,0,0,.08);
-}
-
-.rtc-text{
-    display:block;
-    width:calc(100% - 8px); /* handle ke liye space */
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
 }
 
 .resizable-table td{
