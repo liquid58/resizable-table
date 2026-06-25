@@ -31,6 +31,28 @@
             $table.find("thead th").each(function (index) {
 
                 var $th = $(this);
+                 if (!$th.find(".rtc-text").length) {
+
+        var text = $th.html();
+
+        $th.html(
+            '<span class="rtc-text">' +
+            text +
+            '</span>'
+        );
+
+        $th.attr(
+            "title",
+            $th.text().trim()
+        );
+    }
+
+    if ($th.find(".rtc-handle").length)
+        return;
+
+    $th.append(
+        '<div class="rtc-handle"></div>'
+    );
 
                 if ($th.find(".rtc-handle").length)
                     return;
