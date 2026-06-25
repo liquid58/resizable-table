@@ -11,11 +11,9 @@
     cursor:col-resize;
     user-select:none;
     z-index:9999;
-}
-
-.rtc-handle:hover{
     background:rgba(0,0,0,.08);
 }
+
 .rtc-text{
     display:block;
     max-width:100%;
