@@ -1,5 +1,7 @@
 .resizable-table th{
     position:relative !important;
+    overflow:hidden;
+    white-space:nowrap;
 }
 
 .rtc-handle{
@@ -16,11 +18,12 @@
 
 .rtc-text{
     display:block;
-    max-width:100%;
+    width:calc(100% - 8px); /* handle ke liye space */
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
 }
+
 .resizable-table td{
     overflow:hidden;
     text-overflow:ellipsis;
