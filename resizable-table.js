@@ -35,16 +35,16 @@
 
         var text = $th.html();
 
-        $th.html(
-            '<span class="rtc-text">' +
-            text +
-            '</span>'
-        );
+     $th.html(
+    '<span class="rtc-text">' +
+    text +
+    '</span>'
+);
 
-        $th.attr(
-            "title",
-            $th.text().trim()
-        );
+$th.find('.rtc-text').attr(
+    'title',
+    $th.text().trim()
+);
     }
 
     if ($th.find(".rtc-handle").length)
