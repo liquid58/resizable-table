@@ -1,0 +1,89 @@
+<!-- demo.html -->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Resizable Table Demo</title>
+
+```
+<link rel="stylesheet" href="resizable-table.css">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="resizable-table.js"></script>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        margin:40px;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+    }
+
+    th,td{
+        border:1px solid #ddd;
+        padding:10px;
+    }
+</style>
+```
+
+</head>
+<body>
+
+<h2>Resizable Table Demo</h2>
+
+<button id="resetColumns">
+    Reset Widths
+</button>
+
+<br><br>
+
+<table id="dataTable" class="resizable-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Very Long Project Name Header Example</th>
+            <th>Status</th>
+            <th>Project Owner</th>
+            <th>Created Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Customer Relationship Management System</td>
+            <td>Running</td>
+            <td>John Doe</td>
+            <td>2025-01-10</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Inventory Tracking Application</td>
+            <td>Completed</td>
+            <td>Jane Smith</td>
+            <td>2025-02-12</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+$(function () {
+
+    $("#dataTable").resizableTable({
+        minWidth: 60,
+        saveState: true
+    });
+
+    $("#resetColumns").click(function () {
+        $("#dataTable")[0].resetColumnWidths();
+    });
+
+});
+</script>
+
+</body>
+</html>
