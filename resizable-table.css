@@ -16,3 +16,15 @@
 .rtc-handle:hover{
     background:rgba(0,0,0,.08);
 }
+.rtc-text{
+    display:block;
+    max-width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.resizable-table td{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
