@@ -30,83 +30,68 @@
 
             $table.find("thead th").each(function (index) {
 
-                var $th = $(this);
-                 if (!$th.find(".rtc-text").length) {
+    var $th = $(this);
 
-        var text = $th.html();
+    if (!$th.find(".rtc-text").length) {
 
-     $th.html(
-    '<span class="rtc-text">' +
-    text +
-    '</span>'
-);
+        var textNodes = $th.contents().filter(function () {
+            return this.nodeType === 3 && $.trim(this.nodeValue) !== '';
+        });
 
-$th.find('.rtc-text').attr(
-    'title',
-    $th.text().trim()
-);
+        if (textNodes.length) {
+
+            var text = $.trim(textNodes.first().text());
+
+            textNodes.first().replaceWith(
+                $('<span>', {
+                    class: 'rtc-text',
+                    text: text,
+                    title: text
+                })
+            );
+        }
     }
 
     if ($th.find(".rtc-handle").length)
         return;
 
-    $th.append(
-        '<div class="rtc-handle"></div>'
-    );
+    $th.css("position", "relative");
 
-                if ($th.find(".rtc-handle").length)
-                    return;
+    $th.append('<div class="rtc-handle"></div>');
 
-                $th.css("position", "relative");
+    $th.find(".rtc-handle").on("mousedown", function (e) {
 
-                $th.append(
-                    '<div class="rtc-handle"></div>'
+        e.preventDefault();
+
+        var startX = e.pageX;
+        var startWidth = $th.outerWidth();
+
+        $(document)
+            .on("mousemove.rtc", function (e) {
+
+                var width =
+                    startWidth +
+                    (e.pageX - startX);
+
+                width = Math.max(
+                    width,
+                    settings.minWidth
                 );
 
-                $th.find(".rtc-handle")
-                    .on("mousedown", function (e) {
+                applyWidth(index, width);
 
-                        e.preventDefault();
+            })
+            .on("mouseup.rtc", function () {
 
-                        var startX = e.pageX;
-                        var startWidth =
-                            $th.outerWidth();
+                $(document).off(".rtc");
 
-                        $(document)
-                            .on(
-                                "mousemove.rtc",
-                                function (e) {
+                saveWidths();
 
-                                    var width =
-                                        startWidth +
-                                        (e.pageX -
-                                            startX);
-
-                                    width = Math.max(
-                                        width,
-                                        settings.minWidth
-                                    );
-
-                                    applyWidth(
-                                        index,
-                                        width
-                                    );
-                                }
-                            )
-                            .on(
-                                "mouseup.rtc",
-                                function () {
-
-                                    $(document)
-                                        .off(
-                                            ".rtc"
-                                        );
-
-                                    saveWidths();
-                                }
-                            );
-                    });
             });
+
+    });
+
+});
 
             function applyWidth(
                 columnIndex,
